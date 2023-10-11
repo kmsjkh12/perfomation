@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.EventMapper">
+    <insert id="addEvent" parameterType="com.example.demo.dto.EventDTO">
+        INSERT INTO event (title, start_time, end_time, content, img)
+        VALUE(#{title},#{start_time},#{end_time},#{content},#{img})
+    </insert>
+    <select id="readEventAll" resultType="com.example.demo.dto.EventDTO">
+        SELECT * FROM event;
+    </select>
+</mapper>
+

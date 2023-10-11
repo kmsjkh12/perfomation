@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.MovieMapper">
+    <select id="readinfo" resultType="com.example.demo.dto.MovieDTO">
+        SELECT * FROM movie
+    </select>
+
+    <insert id="insertShow" parameterType="com.example.demo.dto.MovieDTO">
+        INSERT INTO movie (title, start_time, end_time, address, img, movie_id)
+        VALUE(#{title},#{start_time},#{end_time},#{address},#{img},#{movie_id})
+    </insert>
+
+    <update id="addGrade" parameterType="com.example.demo.dto.MovieDTO">
+        UPDATE movie SET grade=#{grade} WHERE id=#{id}
+    </update>
+
+    <update id="incAddCount" parameterType="com.example.demo.dto.MovieDTO">
+        UPDATE movie SET addcount=#{addcount} WHERE id=#{id}
+    </update>
+
+    <select id="readSpeGrade" resultType="com.example.demo.dto.MovieDTO" parameterType="com.example.demo.dto.MovieDTO">
+        SELECT * FROM movie WHERE id=#{id}
+    </select>
+
+    <select id="readSpeGrade2" resultType="com.example.demo.dto.MovieDTO" parameterType="String">
+        SELECT * FROM movie WHERE id=#{str}
+    </select>
+
+
+    <update id="increment_view" parameterType="String">
+        UPDATE movie SET view_count=#{str} WHERE id=#{id}
+    </update>
+
+    <update id="increment_review" parameterType="String">
+        UPDATE movie SET review_count=#{str} WHERE id=#{id}
+    </update>
+
+    <update id="updateGrade" parameterType="String">
+        UPDATE movie SET grade=#{grade} WHERE id=#{infoid}
+    </update>
+
+
+</mapper>
+

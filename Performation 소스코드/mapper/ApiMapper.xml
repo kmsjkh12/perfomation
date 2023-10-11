@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.ApiMapper">
+
+    <select id="readuser" resultType="com.example.demo.dto.ApiDTO" parameterType="com.example.demo.dto.ApiDTO">
+        SELECT * FROM appusers WHERE id=#{id}
+    </select>
+
+    <select id="readappuser" resultType="com.example.demo.dto.ApiDTO" parameterType="String">
+        SELECT * FROM appusers WHERE id=#{id}
+    </select>
+
+    <select id="readuserAll" resultType="com.example.demo.dto.ApiDTO">
+        SELECT * FROM appusers
+    </select>
+
+    <insert id="userInsert" parameterType="com.example.demo.dto.ApiDTO">
+        INSERT INTO appusers (email, password, username, phone)
+        VALUE(#{email},#{password},#{username},#{phone})
+    </insert>
+
+    <select id="searchUser" resultType="com.example.demo.dto.ApiDTO" parameterType="com.example.demo.dto.ApiDTO">
+        SELECT * FROM appusers WHERE email=#{email}
+    </select>
+
+    <update id="changeusername" parameterType="com.example.demo.dto.ApiDTO">
+        UPDATE appusers SET username=#{username} WHERE id=#{id}
+    </update>
+
+    <update id="changepassword" parameterType="com.example.demo.dto.ApiDTO">
+        UPDATE appusers SET password=#{password} WHERE id=#{id}
+    </update>
+
+    <update id="decPrice" parameterType="String">
+        UPDATE appusers SET point=#{price} WHERE id=#{id}
+    </update>
+</mapper>
+

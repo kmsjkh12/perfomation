@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.ReviewMapper">
+    <insert id="insertreview" parameterType="com.example.demo.dto.ReviewDTO">
+        INSERT INTO review (readinfo_id, appusers_id, content, timestamp )
+        VALUE(#{readinfo_id},#{appusers_id},#{content}, now())
+    </insert>
+    <select id="readreview" parameterType="com.example.demo.dto.ReviewDTO" resultType="com.example.demo.dto.ReviewDTO">
+        SELECT * FROM review WHERE readinfo_id=${readinfo_id}
+    </select>
+
+    <select id="SpecificReview" parameterType="String" resultType="com.example.demo.dto.ReviewDTO">
+        SELECT * FROM review WHERE id=#{str}
+    </select>
+
+    <select id="allreadreview" resultType="com.example.demo.dto.ReviewDTO">
+        SELECT * FROM review
+    </select>
+
+    <update id="Push_Appusers_id" parameterType="String">
+        UPDATE review SET push_appusers_id = #{str} WHERE id=#{id}
+    </update>
+
+    <delete id="Delete_review" parameterType="com.example.demo.dto.ReviewDTO">
+        DELETE FROM review WHERE id=#{id}
+    </delete>
+
+    <update id="CountUpPush" parameterType="String">
+        UPDATE review SET push = #{push} WHERE id=#{id}
+    </update>
+
+    <update id="updatereview" parameterType="com.example.demo.dto.ReviewDTO">
+        UPDATE review set content = #{content} WHERE readinfo_id=#{readinfo_id} AND appusers_id=#{appusers_id}
+    </update>
+</mapper>
+

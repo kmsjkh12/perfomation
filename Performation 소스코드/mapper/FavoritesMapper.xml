@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.FavoritesMapper">
+    <select id="readFavorites" resultType="com.example.demo.dto.FavoritesDTO" parameterType="com.example.demo.dto.FavoritesDTO">
+        SELECT * FROM favorites WHERE appusers_id=${appusers_id}
+    </select>
+    <insert id="insertFavorites" parameterType="com.example.demo.dto.FavoritesDTO">
+        INSERT INTO favorites (readinfo_id, appusers_id)
+        VALUE(#{readinfo_id},#{appusers_id})
+    </insert>
+    <delete id="deleteFavorites" parameterType="com.example.demo.dto.FavoritesDTO">
+        DELETE FROM favorites WHERE appusers_id=${appusers_id} AND readinfo_id=${readinfo_id}
+    </delete>
+</mapper>
+
